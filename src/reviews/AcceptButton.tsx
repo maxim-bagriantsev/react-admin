@@ -26,14 +26,14 @@ const AcceptButton = () => {
         {
             mutationMode: 'undoable',
             onSuccess: () => {
-                notify('resources.reviews.notification.approved_success', {
+                notify('resources.reviews.notificationPage.approved_success', {
                     type: 'info',
                     undoable: true,
                 });
                 redirectTo('/reviews');
             },
             onError: () => {
-                notify('resources.reviews.notification.approved_error', {
+                notify('resources.reviews.notificationPage.approved_error', {
                     type: 'warning',
                 });
             },

@@ -19,7 +19,7 @@ import reviews from './reviews';
 import Configuration from './configuration/Configuration';
 import Segments from './segments/Segments';
 import Welcome from "./welcome/Welcome";
-import dataProvider from "./dataProvider";
+import dataProvider from "./dataProvider/dataProvider";
 import {UsersList} from "./users/UsersList";
 import {UserCreate} from "./users/UserCreate";
 import {UserEdit} from "./users/UserEdit";
@@ -34,6 +34,8 @@ import {MaterialCreate} from "./materials/MaterialCreate";
 import {MaterialEdit} from "./materials/MaterialEdit";
 import Profile from "./profile/Profile";
 import Debug from "./debug/Debug";
+import NotificationPage from "./notificationPage/NotificationPage";
+import AccountSettings from "./settings/AccountSettings";
 
 const i18nProvider = polyglotI18nProvider(locale => {
     if (locale === 'fr') {
@@ -64,8 +66,10 @@ const App = () => {
         >
             <CustomRoutes>
                 <Route path="/configuration" element={<Configuration/>}/>
-                <Route path="/profile" element={<Profile/>}/>
+                {/*<Route path="/profile" element={<Profile/>}/>*/}
+                <Route path="/profile" element={<AccountSettings/>}/>
                 <Route path="/debug" element={<Debug/>}/>
+                <Route path="/notification" element={<NotificationPage/>}/>
                 <Route path="/segments" element={<Segments/>}/>
                 <Route path="/welcome" element={<Welcome/>}/>
             </CustomRoutes>

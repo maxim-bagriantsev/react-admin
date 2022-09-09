@@ -1,4 +1,4 @@
-import {Create, SelectInput, SimpleForm, TextInput} from "react-admin";
+import {Create, SelectInput, SimpleForm, TextInput, ReferenceInput, BooleanInput} from "react-admin";
 import React from "react";
 
 export const SpecializationCreate = (props: any) => (
@@ -20,6 +20,12 @@ export const SpecializationCreate = (props: any) => (
             <TextInput source='maxSalary'/>
             <TextInput source='minSalary'/>
             <TextInput source='title'/>
+            <ReferenceInput source={'skill Name'} reference={'skills'} >
+                <SelectInput
+                   optionText={'id'}
+                />
+            </ReferenceInput>
+            <BooleanInput source={'Видимость'}/>
         </SimpleForm>
     </Create>
 );

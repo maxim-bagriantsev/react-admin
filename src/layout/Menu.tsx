@@ -13,6 +13,7 @@ import TroublesIcon from '@mui/icons-material/TroubleshootOutlined';
 import Tickets from '@mui/icons-material/ConfirmationNumberOutlined';
 import MaterialsIcon from '@mui/icons-material/AutoStoriesOutlined';
 import SpecializationsIcon from '@mui/icons-material/AssistantOutlined';
+import NotificationsIcon from '@mui/icons-material/NotificationsNone';
 import {
     useTranslate,
     DashboardMenuItem,
@@ -27,6 +28,8 @@ import invoices from '../invoices';
 import products from '../products';
 import categories from '../categories';
 import SubMenu from './SubMenu';
+import VerticalNavSectionTitle from "../UI/VerticalNavSectionTitle/VerticalNavSectionTitle";
+import {useTheme} from "@mui/material/styles";
 
 type MenuName = 'menuCatalog' | 'menuSales' | 'menuCustomers' | 'menuLibrary' | 'menuFeedback';
 
@@ -45,6 +48,8 @@ const Menu = ({dense = false}: MenuProps) => {
         setState(state => ({...state, [menu]: !state[menu]}));
     };
 
+    const theme = useTheme()
+    console.log(theme)
     return (
         <Box
             sx={{
@@ -58,7 +63,9 @@ const Menu = ({dense = false}: MenuProps) => {
                     }),
             }}
         >
-            <DashboardMenuItem/>
+            <DashboardMenuItem />
+            <VerticalNavSectionTitle item={ {sectionTitle: 'Home', action: '', subject: ''}}/>
+
             <SubMenu
                 handleToggle={() => handleToggle('menuFeedback')}
                 isOpen={state.menuFeedback}
@@ -129,6 +136,15 @@ const Menu = ({dense = false}: MenuProps) => {
                     smart_count: 2,
                 })}
                 leftIcon={<MaterialsIcon/>}
+                dense={dense}
+            />
+            <MenuItemLink
+                to="/notification"
+                state={{_scrollToTop: true}}
+                primaryText={translate(`resources.notification.name`, {
+                    smart_count: 2,
+                })}
+                leftIcon={<NotificationsIcon/>}
                 dense={dense}
             />
             <SubMenu

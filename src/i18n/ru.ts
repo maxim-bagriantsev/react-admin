@@ -5,9 +5,9 @@ const customRussianMessages: TranslationMessages = {
     ...russianMessages,
     pos: {
         search: 'Search',
-        configuration: 'Configuration',
-        profile: 'Profile',
-        language: 'Language',
+        configuration: 'Конфигурация',
+        profile: 'Профиль',
+        language: 'Язык',
         theme: {
             name: 'Theme',
             light: 'Light',
@@ -240,6 +240,9 @@ const customRussianMessages: TranslationMessages = {
         },
         books: {
             name: 'Книги'
+        },
+        notification: {
+            name: 'Уведомление'
         },
     },
 };

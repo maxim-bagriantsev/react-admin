@@ -22,4 +22,4 @@ const Debug = () => {
     );
 };
 
-export default Debug;ya
+export default Debug;

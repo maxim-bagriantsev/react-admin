@@ -41,7 +41,7 @@ const ReviewEditToolbar = (props: ToolbarProps) => {
                     <SaveButton
                         mutationOptions={{
                             onSuccess: () => {
-                                notify('ra.notification.updated', {
+                                notify('ra.notificationPage.updated', {
                                     type: 'info',
                                     messageArgs: { smart_count: 1 },
                                     undoable: true,

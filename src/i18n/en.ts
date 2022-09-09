@@ -241,6 +241,9 @@ const customEnglishMessages: TranslationMessages = {
         books: {
             name: 'Books'
         },
+        notification: {
+            name: 'Notification'
+        },
     },
 };
 
