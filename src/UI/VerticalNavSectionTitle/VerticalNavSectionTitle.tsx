@@ -19,8 +19,8 @@ const ListSubheader = styled((props: ListSubheaderProps) => <MuiListSubheader co
         lineHeight: 1,
         display: 'flex',
         position: 'relative',
-        marginTop: theme.spacing(7),
-        marginBottom: theme.spacing(2),
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
         backgroundColor: 'transparent',
         transition: 'padding-left .25s ease-in-out'
     })

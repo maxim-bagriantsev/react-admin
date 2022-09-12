@@ -9,8 +9,8 @@ import {
     DateInput,
 } from 'react-admin';
 
-import FullNameField from '../visitors/FullNameField';
-import AddressField from '../visitors/AddressField';
+import FullNameField from '../pages/visitors/FullNameField';
+import AddressField from '../pages/visitors/AddressField';
 import InvoiceShow from './InvoiceShow';
 
 const listFilters = [

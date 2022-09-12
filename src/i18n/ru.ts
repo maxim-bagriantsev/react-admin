@@ -39,7 +39,8 @@ const customRussianMessages: TranslationMessages = {
             catalog: 'Каталог',
             customers: 'Покупатели',
             library: 'Библиотека',
-            feedback: 'Обратная связь'
+            feedback: 'Обратная связь',
+            Errors: 'Ошибки',
         },
     },
     resources: {
@@ -223,6 +224,12 @@ const customRussianMessages: TranslationMessages = {
         users: {
             name: 'Пользователи',
         },
+        configuration: {
+            name: 'Конфигурация',
+        },
+        profile: {
+            name: 'Профиль',
+        },
         materials: {
             name: 'Материалы',
         },
@@ -243,6 +250,15 @@ const customRussianMessages: TranslationMessages = {
         },
         notification: {
             name: 'Уведомление'
+        },
+        401: {
+            name: '401'
+        },
+        404: {
+            name: '404'
+        },
+        500: {
+            name: '500'
         },
     },
 };

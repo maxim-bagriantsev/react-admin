@@ -39,7 +39,8 @@ const customEnglishMessages: TranslationMessages = {
             catalog: 'Catalog',
             customers: 'Customers',
             library: 'Библиотека',
-            feedback: 'Feedback'
+            feedback: 'Feedback',
+            Errors: 'Errors',
         },
     },
     resources: {
@@ -220,8 +221,14 @@ const customEnglishMessages: TranslationMessages = {
         troubles: {
             name: 'Troubles',
         },
+        profile: {
+            name: 'Profile',
+        },
         users: {
             name: 'Users',
+        },
+        configuration: {
+            name: 'Configuration',
         },
         materials: {
             name: 'Materials',
@@ -243,6 +250,15 @@ const customEnglishMessages: TranslationMessages = {
         },
         notification: {
             name: 'Notification'
+        },
+        401: {
+            name: '401'
+        },
+        404: {
+            name: '404'
+        },
+        500: {
+            name: '500'
         },
     },
 };

@@ -14,6 +14,12 @@ import Tickets from '@mui/icons-material/ConfirmationNumberOutlined';
 import MaterialsIcon from '@mui/icons-material/AutoStoriesOutlined';
 import SpecializationsIcon from '@mui/icons-material/AssistantOutlined';
 import NotificationsIcon from '@mui/icons-material/NotificationsNone';
+import ProfileIcon from '@mui/icons-material/AccountBoxOutlined';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ErrorIcon from '@mui/icons-material/ErrorOutline';
+import Error401Icon from '@mui/icons-material/GppMaybe';
+import Error404Icon from '@mui/icons-material/GppBad';
+import Error500Icon from '@mui/icons-material/NotificationImportant';
 import {
     useTranslate,
     DashboardMenuItem,
@@ -22,16 +28,16 @@ import {
     useSidebarState,
 } from 'react-admin';
 
-import visitors from '../visitors';
-import orders from '../orders';
+import visitors from '../pages/visitors';
+import orders from '../pages/orders';
 import invoices from '../invoices';
-import products from '../products';
-import categories from '../categories';
+import products from '../pages/products';
+import categories from '../pages/categories';
 import SubMenu from './SubMenu';
 import VerticalNavSectionTitle from "../UI/VerticalNavSectionTitle/VerticalNavSectionTitle";
 import {useTheme} from "@mui/material/styles";
 
-type MenuName = 'menuCatalog' | 'menuSales' | 'menuCustomers' | 'menuLibrary' | 'menuFeedback';
+type MenuName = 'menuCatalog' | 'menuSales' | 'menuCustomers' | 'menuLibrary' | 'menuFeedback' | 'menuErrors';
 
 const Menu = ({dense = false}: MenuProps) => {
     const [state, setState] = useState({
@@ -39,17 +45,20 @@ const Menu = ({dense = false}: MenuProps) => {
         menuSales: true,
         menuCustomers: true,
         menuLibrary: true,
-        menuFeedback: true
+        menuFeedback: true,
+        menuErrors: true
     });
     const translate = useTranslate();
     const [open] = useSidebarState();
 
     const handleToggle = (menu: MenuName) => {
         setState(state => ({...state, [menu]: !state[menu]}));
+
+
     };
 
     const theme = useTheme()
-    console.log(theme)
+
     return (
         <Box
             sx={{
@@ -63,8 +72,9 @@ const Menu = ({dense = false}: MenuProps) => {
                     }),
             }}
         >
-            <DashboardMenuItem />
-            <VerticalNavSectionTitle item={ {sectionTitle: 'Home', action: '', subject: ''}}/>
+            <DashboardMenuItem/>
+
+            {open && <VerticalNavSectionTitle item={{sectionTitle: 'Обратная связь', action: '', subject: ''}}/>}
 
             <SubMenu
                 handleToggle={() => handleToggle('menuFeedback')}
@@ -101,7 +111,7 @@ const Menu = ({dense = false}: MenuProps) => {
                     dense={dense}
                 />
             </SubMenu>
-
+            {open && <VerticalNavSectionTitle item={{sectionTitle: 'Пользователи', action: '', subject: ''}}/>}
             <MenuItemLink
                 to="/users"
                 state={{_scrollToTop: true}}
@@ -111,6 +121,7 @@ const Menu = ({dense = false}: MenuProps) => {
                 leftIcon={<UsersIcon/>}
                 dense={dense}
             />
+            {open && <VerticalNavSectionTitle item={{sectionTitle: 'Навыки', action: '', subject: ''}}/>}
             <MenuItemLink
                 to="/skills"
                 state={{_scrollToTop: true}}
@@ -120,6 +131,7 @@ const Menu = ({dense = false}: MenuProps) => {
                 leftIcon={<SkillsIcon/>}
                 dense={dense}
             />
+            {open && <VerticalNavSectionTitle item={{sectionTitle: 'Специализации', action: '', subject: ''}}/>}
             <MenuItemLink
                 to="/specializations"
                 state={{_scrollToTop: true}}
@@ -129,6 +141,7 @@ const Menu = ({dense = false}: MenuProps) => {
                 leftIcon={<SpecializationsIcon/>}
                 dense={dense}
             />
+            {open && <VerticalNavSectionTitle item={{sectionTitle: 'Материалы', action: '', subject: ''}}/>}
             <MenuItemLink
                 to="/materials"
                 state={{_scrollToTop: true}}
@@ -136,6 +149,107 @@ const Menu = ({dense = false}: MenuProps) => {
                     smart_count: 2,
                 })}
                 leftIcon={<MaterialsIcon/>}
+                dense={dense}
+            />
+
+            {/*<SubMenu*/}
+            {/*    handleToggle={() => handleToggle('menuSales')}*/}
+            {/*    isOpen={state.menuSales}*/}
+            {/*    name="pos.menu.sales"*/}
+            {/*    icon={<orders.icon/>}*/}
+            {/*    dense={dense}*/}
+            {/*>*/}
+            {/*    <MenuItemLink*/}
+            {/*        to="/commands"*/}
+            {/*        state={{_scrollToTop: true}}*/}
+            {/*        primaryText={translate(`resources.commands.name`, {*/}
+            {/*            smart_count: 2,*/}
+            {/*        })}*/}
+            {/*        leftIcon={<orders.icon/>}*/}
+            {/*        dense={dense}*/}
+            {/*    />*/}
+            {/*    <MenuItemLink*/}
+            {/*        to="/invoices"*/}
+            {/*        state={{_scrollToTop: true}}*/}
+            {/*        primaryText={translate(`resources.invoices.name`, {*/}
+            {/*            smart_count: 2,*/}
+            {/*        })}*/}
+            {/*        leftIcon={<invoices.icon/>}*/}
+            {/*        dense={dense}*/}
+            {/*    />*/}
+            {/*</SubMenu>*/}
+            {/*<SubMenu*/}
+            {/*    handleToggle={() => handleToggle('menuCatalog')}*/}
+            {/*    isOpen={state.menuCatalog}*/}
+            {/*    name="pos.menu.catalog"*/}
+            {/*    icon={<products.icon/>}*/}
+            {/*    dense={dense}*/}
+            {/*>*/}
+            {/*    <MenuItemLink*/}
+            {/*        to="/products"*/}
+            {/*        state={{_scrollToTop: true}}*/}
+            {/*        primaryText={translate(`resources.products.name`, {*/}
+            {/*            smart_count: 2,*/}
+            {/*        })}*/}
+            {/*        leftIcon={<products.icon/>}*/}
+            {/*        dense={dense}*/}
+            {/*    />*/}
+            {/*    <MenuItemLink*/}
+            {/*        to="/categories"*/}
+            {/*        state={{_scrollToTop: true}}*/}
+            {/*        primaryText={translate(`resources.categories.name`, {*/}
+            {/*            smart_count: 2,*/}
+            {/*        })}*/}
+            {/*        leftIcon={<categories.icon/>}*/}
+            {/*        dense={dense}*/}
+            {/*    />*/}
+            {/*</SubMenu>*/}
+            {/*<SubMenu*/}
+            {/*    handleToggle={() => handleToggle('menuCustomers')}*/}
+            {/*    isOpen={state.menuCustomers}*/}
+            {/*    name="pos.menu.customers"*/}
+            {/*    icon={<visitors.icon/>}*/}
+            {/*    dense={dense}*/}
+            {/*>*/}
+            {/*    <MenuItemLink*/}
+            {/*        to="/customers"*/}
+            {/*        state={{_scrollToTop: true}}*/}
+            {/*        primaryText={translate(`resources.customers.name`, {*/}
+            {/*            smart_count: 2,*/}
+            {/*        })}*/}
+            {/*        leftIcon={<visitors.icon/>}*/}
+            {/*        dense={dense}*/}
+            {/*    />*/}
+            {/*    <MenuItemLink*/}
+            {/*        to="/segments"*/}
+            {/*        state={{_scrollToTop: true}}*/}
+            {/*        primaryText={translate(`resources.segments.name`, {*/}
+            {/*            smart_count: 2,*/}
+            {/*        })}*/}
+            {/*        leftIcon={<LabelIcon/>}*/}
+            {/*        dense={dense}*/}
+            {/*    />*/}
+
+            {/*</SubMenu>*/}
+
+            {open && <VerticalNavSectionTitle item={{sectionTitle: 'Настройки', action: '', subject: ''}}/>}
+
+            <MenuItemLink
+                to="/profile"
+                state={{_scrollToTop: true}}
+                primaryText={translate(`resources.profile.name`, {
+                    smart_count: 2,
+                })}
+                leftIcon={<ProfileIcon/>}
+                dense={dense}
+            />
+            <MenuItemLink
+                to="/configuration"
+                state={{_scrollToTop: true}}
+                primaryText={translate(`resources.configuration.name`, {
+                    smart_count: 2,
+                })}
+                leftIcon={<SettingsIcon/>}
                 dense={dense}
             />
             <MenuItemLink
@@ -147,85 +261,6 @@ const Menu = ({dense = false}: MenuProps) => {
                 leftIcon={<NotificationsIcon/>}
                 dense={dense}
             />
-            <SubMenu
-                handleToggle={() => handleToggle('menuSales')}
-                isOpen={state.menuSales}
-                name="pos.menu.sales"
-                icon={<orders.icon/>}
-                dense={dense}
-            >
-                <MenuItemLink
-                    to="/commands"
-                    state={{_scrollToTop: true}}
-                    primaryText={translate(`resources.commands.name`, {
-                        smart_count: 2,
-                    })}
-                    leftIcon={<orders.icon/>}
-                    dense={dense}
-                />
-                <MenuItemLink
-                    to="/invoices"
-                    state={{_scrollToTop: true}}
-                    primaryText={translate(`resources.invoices.name`, {
-                        smart_count: 2,
-                    })}
-                    leftIcon={<invoices.icon/>}
-                    dense={dense}
-                />
-            </SubMenu>
-            <SubMenu
-                handleToggle={() => handleToggle('menuCatalog')}
-                isOpen={state.menuCatalog}
-                name="pos.menu.catalog"
-                icon={<products.icon/>}
-                dense={dense}
-            >
-                <MenuItemLink
-                    to="/products"
-                    state={{_scrollToTop: true}}
-                    primaryText={translate(`resources.products.name`, {
-                        smart_count: 2,
-                    })}
-                    leftIcon={<products.icon/>}
-                    dense={dense}
-                />
-                <MenuItemLink
-                    to="/categories"
-                    state={{_scrollToTop: true}}
-                    primaryText={translate(`resources.categories.name`, {
-                        smart_count: 2,
-                    })}
-                    leftIcon={<categories.icon/>}
-                    dense={dense}
-                />
-            </SubMenu>
-            <SubMenu
-                handleToggle={() => handleToggle('menuCustomers')}
-                isOpen={state.menuCustomers}
-                name="pos.menu.customers"
-                icon={<visitors.icon/>}
-                dense={dense}
-            >
-                <MenuItemLink
-                    to="/customers"
-                    state={{_scrollToTop: true}}
-                    primaryText={translate(`resources.customers.name`, {
-                        smart_count: 2,
-                    })}
-                    leftIcon={<visitors.icon/>}
-                    dense={dense}
-                />
-                <MenuItemLink
-                    to="/segments"
-                    state={{_scrollToTop: true}}
-                    primaryText={translate(`resources.segments.name`, {
-                        smart_count: 2,
-                    })}
-                    leftIcon={<LabelIcon/>}
-                    dense={dense}
-                />
-
-            </SubMenu>
             <MenuItemLink
                 to="/reviews"
                 state={{_scrollToTop: true}}
@@ -235,6 +270,41 @@ const Menu = ({dense = false}: MenuProps) => {
                 leftIcon={<BooksIcon/>}
                 dense={dense}
             />
+            <SubMenu
+                handleToggle={() => handleToggle('menuErrors')}
+                isOpen={state.menuErrors}
+                name="pos.menu.Errors"
+                icon={<ErrorIcon/>}
+                dense={dense}
+            >
+                <MenuItemLink
+                    to="/401"
+                    state={{_scrollToTop: true}}
+                    primaryText={translate(`resources.401.name`, {
+                        smart_count: 2,
+                    })}
+                    leftIcon={<Error401Icon/>}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/404"
+                    state={{_scrollToTop: true}}
+                    primaryText={translate(`resources.404.name`, {
+                        smart_count: 2,
+                    })}
+                    leftIcon={<Error404Icon/>}
+                    dense={dense}
+                />
+                <MenuItemLink
+                to="/500"
+                state={{_scrollToTop: true}}
+                primaryText={translate(`resources.500.name`, {
+                    smart_count: 2,
+                })}
+                leftIcon={<Error500Icon/>}
+                dense={dense}
+            />
+            </SubMenu>
             <MenuItemLink
                 to="/welcome"
                 state={{_scrollToTop: true}}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { ReferenceField, TextField, useRecordContext } from 'react-admin';
 
-import Basket from '../orders/Basket';
+import Basket from '../pages/orders/Basket';
 import { Customer, Invoice } from '../types';
 
 const InvoiceShow = () => {
