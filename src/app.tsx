@@ -77,6 +77,7 @@ const App = () => {
                 <Route path="/401" element={<Error401/>}/>
                 <Route path="/404" element={<Error404/>}/>
                 <Route path="/500" element={<Error500/>}/>
+                <Route path="/login" element={<Error500/>}/>
             </CustomRoutes>
             <Resource name="customers" {...visitors} />
             <Resource
